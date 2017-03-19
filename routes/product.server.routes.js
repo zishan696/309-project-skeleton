@@ -5,7 +5,7 @@ module.exports = function(app){
 
  app.route('/api/products')
 	.get(products.list)
-	.post(users.requiresLogin, products.create);
+	.post( products.create);
 
   app.route('/api/products/:productId')
 	.get(products.read)
@@ -14,6 +14,8 @@ module.exports = function(app){
 	app.route('/api/products/edit/:productId')
 	.get(products.read)
 	.put(users.requiresLogin, products.update);
+
+  app.route('/products/new').get(products.new);
 
   app.param('productId', products.productByID);
 

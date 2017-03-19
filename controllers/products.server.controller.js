@@ -18,6 +18,13 @@ module.exports.list = function(req, res) {
   });
 };
 
+exports.new = function(req, res) {
+	res.render('./../public/views/product/create.ejs', {
+		user: req.user || null,
+		request: req
+	});
+};
+
 module.exports.create = function(req, res) {
   var product = new Product(req.body);
   product.user = req.user;
