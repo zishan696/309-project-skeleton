@@ -5,7 +5,7 @@ module.exports = function(app){
 
  app.route('/api/products')
 	.get(products.list)
-	.post( products.create);
+	.post(users.requiresLogin, products.create);
 
   app.route('/api/products/:productId')
 	.get(products.read)
