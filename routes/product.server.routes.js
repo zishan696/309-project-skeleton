@@ -16,6 +16,7 @@ module.exports = function(app){
 	.put(users.requiresLogin, products.update);
 
   app.route('/products/new').get(products.new);
+  app.route('/products/:productId').get(products.one);
 
   app.param('productId', products.productByID);
 

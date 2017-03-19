@@ -44,6 +44,12 @@ module.exports.read = function(req, res) {
   res.json(req.product);
 };
 
+exports.one = function(req, res) {
+	res.render('./../public/views/product/view.ejs', {
+		user: req.user || null,
+		request: req
+	});
+};
 
 exports.delete = function(req, res) {
 	var product = req.product;
