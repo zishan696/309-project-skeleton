@@ -25,6 +25,27 @@ exports.new = function(req, res) {
 	});
 };
 
+exports.edit = function(req, res) {
+	res.render('./../public/views/product/edit.ejs', {
+		user: req.user || null,
+		request: req
+	});
+};
+
+exports.view = function(req, res) {
+	res.render('./../public/views/product/view.ejs', {
+		user: req.user || null,
+		request: req
+	});
+};
+
+exports.all = function(req, res) {
+	res.render('./../public/views/product/list.ejs', {
+		user: req.user || null,
+		request: req
+	});
+};
+
 module.exports.create = function(req, res) {
   var product = new Product(req.body);
   product.user = req.user;

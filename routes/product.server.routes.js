@@ -18,6 +18,9 @@ module.exports = function(app){
 
 //Routes to render views
   app.route('/products/new').get(products.new);
+  app.route('/products/all').get(products.all);
+  app.route('/products/edit/:productId').get(products.edit);
+  app.route('/products/:productId').get(products.view);
 
 app.param('productId', products.productByID);
 
