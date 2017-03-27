@@ -41,6 +41,7 @@
   <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">
       <button id="submit" type="submit" class="btn btn-default">Submit</button>
+      <div id="error"></div>
     </div>
   </div>
 </div>
@@ -73,8 +74,10 @@
       data: product
     }).done(function(response){
       console.log(response);
+      window.location.replace("/products/"+response._id);
     }).fail(function(response){
-        console.log(response);
+      $("#error").text(JSON.parse(response.responseText).message);
+        console.log(JSON.parse(response.responseText).message);
     });
   });
   </script>

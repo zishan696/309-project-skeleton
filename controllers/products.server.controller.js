@@ -40,13 +40,28 @@ exports.view = function(req, res) {
 };
 
 exports.all = function(req, res) {
-	res.render('./../public/views/product/list.ejs', {
-		user: req.user || null,
-		request: req
-	});
+  Product.find(function(err, data) {
+    if (err) {
+      return res.status(400).send({
+
+          message: errorHandler.getErrorMessage(err)
+        });
+    } else {
+      console.log("api called");
+      console.log(data);
+
+      res.render('./../public/views/product/list.ejs', {
+    		user: req.user || null,
+    		request: req,
+        products: data
+    	});
+    }
+  });
+
 };
 
 module.exports.create = function(req, res) {
+  console.log(req.user);
   var product = new Product(req.body);
   product.user = req.user;
   product.save(function(err, data) {
