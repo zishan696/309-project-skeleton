@@ -1,0 +1,31 @@
+<!DOCTYPE html5>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title><%= request.product.name%></title>
+    <!-- General META -->
+    <meta charset="utf-8">
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+  </head>
+  <body>
+      <h1>Single product info</h1>
+      <h2>Name: <%= request.product.name%></h2>
+      <% if(request.product.description) { %>
+      <h2>Description: <%= request.product.description%></h2>
+      <% } %>
+      <h2>Price: <%= request.product.price%></h2>
+      <h2>Quantity: <%= request.product.quantity%></h2>
+      <p id="date"></p>
+      <script src="/lib/jquery/dist/jquery.min.js"></script>
+      <script>
+      var product = <%- JSON.stringify(request.product) %>;
+      console.log(product);
+      $("#date").text(product.created);
+      </script>
+      
+   </body>
+</html>
