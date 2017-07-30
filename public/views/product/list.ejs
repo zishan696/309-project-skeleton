@@ -15,7 +15,7 @@
     <div class="container">
       <h2>All Products</h2>
     <% for(var i=0; i<products.length; i++) { %>
-      <div><%= products[i].name %></div>
+      <div><a href="/products/<%=products[i]._id%>"><%= products[i].name %></a></div>
       <%}%>
     </div>
   </body>
