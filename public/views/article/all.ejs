@@ -1,5 +1,11 @@
-
-<h1>Article List</h1>
+<html>
+ <head>
+     <title>All Articles</title>
+ </head>   
+  <body>
+      
+      <h2>List of all articles</h2>
+      <h1>Article List</h1>
 <% console.log(articles) %>
   <% for(var i=0; i<articles.length; i++) { %>
     <h1> <%= articles[i].title %> </h1>
@@ -9,3 +15,5 @@
     <h3><%= articles[i].content%></h3>
     <h3><%= articles[i].created%></h3>
     <% } %>
+  </body>  
+</html>
