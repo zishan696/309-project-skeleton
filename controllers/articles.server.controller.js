@@ -3,24 +3,31 @@ var Article = require('./../models/Article.js');
 var errorHandler = require('./errors.server.controller');
 var _ = require('lodash');
 
+module.exports.singleView = function(req, res){
+  res.render('./../public/views/article/view.ejs', {
+          user: req.user || null,
+          request: req
+        });
+}
+
 module.exports.listView = function(req, res) {
-  Article.find(function(err, data) {
-    if (err) {
-      return res.status(400).send({
+    Article.find(function(err, data) {
+      if (err) {
+        return res.status(400).send({
 
-  				message: errorHandler.getErrorMessage(err)
-  			});
-    } else {
-      console.log("api called");
+          message: errorHandler.getErrorMessage(err)
+        });
+      }
+      else {
+        console.log("api called");
 
-      res.render('./../public/views/article/all.ejs', {
-		user: req.user || null,
-		request: req,
-		articles: data
-	});
-    }
-  });
-  
+        res.render('./../public/views/article/all.ejs', {
+          user: req.user || null,
+          request: req,
+          articles: data
+        });
+      }
+    });
   
 	
 };
