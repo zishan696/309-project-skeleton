@@ -9,12 +9,13 @@ module.exports = function(app){
 
   app.route('/api/articles/:articleId')
 	.get(articles.read)
-  .delete(users.requiresLogin, articles.delete);
+    .delete(users.requiresLogin, articles.delete);
 
 	app.route('/api/articles/edit/:articleId')
 	.get(articles.read)
 	.put(users.requiresLogin, articles.update);
 
+app.route('/articles/all').get(articles.all);
 
 app.param('articleId', articles.articleByID);
 

@@ -11,11 +11,26 @@ module.exports.list = function(req, res) {
   				message: errorHandler.getErrorMessage(err)
   			});
     } else {
-      console.log("api called");
-
       res.status(200).send(data);
     }
-  });
+  }).populate('postedBy', '_id username');
+};
+
+module.exports.all = function(req, res) {
+    Article.find(function(err, data) {
+      if (err) {
+        return res.status(400).send({
+          message: errorHandler.getErrorMessage(err)
+        });
+      }
+      else {
+        res.render('./../public/views/article/all.ejs', {
+          user: req.user || null,
+          request: req,
+          articles: data
+        });
+      }
+    }).populate('postedBy', '_id username');
 };
 
 module.exports.create = function(req, res) {

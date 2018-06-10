@@ -9,19 +9,28 @@ var ArticleSchema = {
     required: 'Title required'
   },
 
-  content: {
+  summary: {
     type: String,
     default: '',
     trim: true,
-    required: 'Content required'
+    required: 'Summary required'
 
   },
-
-  user: {
+  author: {
+    type: String,
+    default: '',
+    trim: true,
+    required: 'Author required'
+  },
+  link: {
+    type: String,
+    default: '',
+    trim: true
+  },
+  postedBy: {
     type: Schema.ObjectId,
     ref: 'User'
   },
-
   created: {
     type: Date,
     default: Date.now

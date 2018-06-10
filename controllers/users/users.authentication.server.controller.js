@@ -13,8 +13,6 @@ var _ = require('lodash'),
  * Signup
  */
 exports.signup = function(req, res) {
-	// For security measurement we remove the roles from the req.body object
-	delete req.body.roles;
 
 	// Init Variables
 	var user = new User(req.body);
@@ -65,6 +63,13 @@ exports.signin = function(req, res, next) {
 			});
 		}
 	})(req, res, next);
+};
+
+exports.signupView = function(req, res) {
+	res.render('./../public/views/user/signup.ejs', {
+		user: req.user || null,
+		request: req
+	});
 };
 
 exports.signinView = function(req, res) {
