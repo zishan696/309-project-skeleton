@@ -1,4 +1,4 @@
-<% include ../partials/header.ejs %>
+ <% include ../partials/header.ejs %>
 <div class="container">
   <h1>Article List </h1>
   <% if(user) {%>
@@ -15,9 +15,25 @@
       <p>
         <% if(user && String(user._id) == articles[i].postedBy._id) {%>
         <a href="/articles/edit/<%=articles[i]._id%>"> Edit </a>
-        <button>Delete</button>
+        <button onclick="deleteArticle(<%= i %>)">Delete</button>
         <% } %>
       </p>
     <% } %>
 </div>
+<script src="/lib/jquery/dist/jquery.min.js"></script>
+<script>
+   function deleteArticle(index){
+     var articles = <%- JSON.stringify(articles) %>;
+     var article_id = articles[index]._id;
+     $.ajax({
+          method:"DELETE",
+          url:'/api/articles/'+article_id
+     }).done(function(response){
+          window.location.replace("/articles/all");
+     }).fail(function(response){
+          alert("Oops! Article not deleted.");
+     });
+   }
+</script> 
+
 <% include ../partials/footer.ejs %>

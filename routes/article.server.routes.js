@@ -19,5 +19,5 @@ app.route('/articles/all').get(articles.all);
 
 app.param('articleId', articles.articleByID);
 
-
+app.route('/articles/new').get(articles.new);
 }

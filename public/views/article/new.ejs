@@ -1,0 +1,40 @@
+<% include ../partials/header.ejs %>
+<div class="container">
+    	              3.1 Form elements                     <        
+    	                            <h1>New Article</h1>
+  	<p>Title:</p>
+  	<input type="text" id="title"/><br/><br/>
+  	<p>Author:</p>
+  	<input type="text" id="author"/><br/><br/>
+  	<p>Link:</p>
+  	<input type="text" id="link"/><br/><br/>
+  	<p>Summary</p>
+  	<textarea id="summary">Add summary </textarea><br/><br/>
+  	<button id="submit">Submit</button>
+  	<div id="error"></div>
+
+</div>
+<script src="/lib/jquery/dist/jquery.min.js"></script>
+<script>
+3.2 Script to handle submit and make HTTP POST request to 
+    the server using AJAX                               <    
+    var newArticle = {title:"", author:"", link:"", summary:""};
+  	$('#submit').click(function(){
+    	newArticle.title = $('#title').val();
+    	newArticle.author = $('#author').val();
+    	newArticle.link = $('#link').val();
+    	newArticle.summary = $('#summary').val();
+$.ajax({
+    	method: "POST",
+    	url: "/api/articles",
+data: newArticle
+}).done(function(response){
+console.log(response);
+    	window.location.replace("/article/"+response._id);;
+}).fail(function(response){
+$("#error").text(JSON.parse(response.responseText).message);
+});
+});
+
+</script>
+<% include ../partials/footer.ejs %>
