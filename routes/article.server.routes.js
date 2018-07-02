@@ -20,4 +20,6 @@ app.route('/articles/all').get(articles.all);
 app.param('articleId', articles.articleByID);
 
 app.route('/articles/new').get(articles.new);
+app.route('/articles/edit/:articleId').get(articles.edit);
+app.route('/article/:articleId').get(articles.single);
 }

@@ -1,0 +1,40 @@
+<% include ../partials/header.ejs %>
+<div class="container">
+    	              3.1 Form elements                     <        
+    	                            
+</div>
+<script src="/lib/jquery/dist/jquery.min.js"></script>
+<script>
+3.2 Script to handle submit and make HTTP POST request to 
+    the server using AJAX                               <                                                                                  
+</script>
+<% include ../partials/footer.ejs %>
+<h1>New Article</h1>
+<p>Title:</p>
+<input type="text" id="title" value="<%=article.title%>"/><br/><br/>
+<p>Author:</p>
+<input type="text" id="author" value="<%=article.author%>"/><br/><br/>
+<p>Link:</p>
+<input type="text" id="link" value="<%=article.link%>"/><br/><br/>
+<p>Summary</p>
+<textarea id="summary"><%=article.summary%></textarea><br/><br/>
+<button id="submit">Submit</button>
+<div id="error"></div>
+var articleID = <%- JSON.stringify(article._id) %>;
+  	var updatedArticle = {};
+  	$('#submit').click(function(){
+updatedArticle.title = $('#title').val();
+updatedArticle.author = $('#author').val();
+updatedArticle.link = $('#link').val();
+updatedArticle.summary = $('#summary').val();
+$.ajax({
+method: "PUT",
+url: "/api/articles/edit/"+articleID,
+data: updatedArticle
+}).done(function(response){
+console.log(response);
+window.location.replace("/article/"+articleID);;
+}).fail(function(response){
+$("#error").text(JSON.parse(response.responseText).message);
+});
+});

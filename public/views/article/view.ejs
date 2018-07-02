@@ -1,0 +1,8 @@
+<% include ../partials/header.ejs %>
+<div class="container">
+    	<h1> <%= article.title %> </h1>
+    	<h5>By <%= article.author%> </h5>
+    	<h3><%= article.summary%></h3>
+    	<a href="<%=article.link%>" target="blank">Go to article</a>
+</div>
+<% include ../partials/footer.ejs %>
